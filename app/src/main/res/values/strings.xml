@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">Pokemon Search</string>
+
+    <!-- Search Screen -->
+    <string name="pokemon_logo">Pokemon Logo</string>
+    <string name="enter_pokemon_name">Enter Pokemon Name</string>
+    <string name="search">Search</string>
+    <string name="invalid_pokemon_name">Invalid Pokemon Name</string>
+    <string name="error_occurred">An error has occurred</string>
+
+    <!-- List Screen -->
+    <string name="pokemon_sprite">Pokemon Sprite</string>
+    <string name="back">Back</string>
+    <string name="height">Height: </string>
+    <string name="weight">Weight: </string>
+    <string name="move_list">Moves List: </string>
+
+    <!-- Detail Screen -->
+    <string name="name">Name: </string>
+    <string name="accuracy">Accuracy: </string>
+    <string name="pp">PP: </string>
+    <string name="power">Power: </string>
+    <string name="type">Type: </string>
+    <string name="data_unavailable">Move data not available</string>
+
 </resources>
