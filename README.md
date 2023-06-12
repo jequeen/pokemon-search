@@ -1,6 +1,6 @@
 # Pokemon Search App
 
-This repository contains the source code for a Pokemon search application. The app allows users to search for a Pokemon by name and view its details, including its height, weight, and moves. If you are unfamiliar with Pokemon, for sample input try "Pickachu", "Charizard", or "Mew"
+This repository contains the source code for a Pokemon search application. The app allows users to search for a Pokemon by name and view its details, including its height, weight, and moves. If you are unfamiliar with Pokemon, for sample input try "Pikachu", "Charizard", or "Mew"
 
 ## Features
 
