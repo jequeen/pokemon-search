@@ -3,6 +3,8 @@ package com.example.pokemonsearch.screens.detail
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Icon
@@ -11,27 +13,23 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.ViewModelStoreOwner
 import com.example.pokemonsearch.R
 import com.example.pokemonsearch.data.model.MoveDetails
 import com.example.pokemonsearch.data.model.MoveType
-import com.example.pokemonsearch.screens.PokemonSearchViewModel
 import com.example.pokemonsearch.ui.theme.PokemonSearchTheme
 
 @Composable
 fun MoveDetailRoute(
-    viewModel: PokemonSearchViewModel = hiltViewModel(LocalContext.current as ViewModelStoreOwner),
+    viewModel: MoveDetailViewModel = hiltViewModel(),
     onBack: () -> Unit
 ) {
-    val selectedMove = viewModel.selectedMove
 
     MoveDetailsScreen(
-        selectedMove = selectedMove,
+        selectedMove = viewModel.selectedMove.value,
         onBack = onBack
     )
 }
@@ -42,7 +40,10 @@ fun MoveDetailsScreen(
     onBack: () -> Unit
 ) {
 
-    Column(Modifier.fillMaxSize()) {
+    Column(
+        Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())) {
         // Back button
         Surface {
             IconButton(

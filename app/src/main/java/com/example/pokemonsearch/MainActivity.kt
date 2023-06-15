@@ -4,9 +4,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.pokemonsearch.screens.detail.MoveDetailRoute
 import com.example.pokemonsearch.screens.list.PokemonInfoListRoute
 import com.example.pokemonsearch.screens.search.PokemonSearchRoute
@@ -40,22 +42,28 @@ fun App() {
         composable("pokemonSearch") {
             PokemonSearchRoute(
                 onPokemonSelected = {
-                    navController.navigate("pokemonInfoList")
+                    navController.navigate("pokemonInfoList/${it.name}")
                 }
             )
         }
         composable(
-            "pokemonInfoList"
+            route = "pokemonInfoList/{pokemonName}",
+            arguments = listOf(navArgument("pokemonName"){
+                type = NavType.StringType
+            })
         ) {
             PokemonInfoListRoute(
                 onBack = { navController.popBackStack() },
-                onMoveSelected = {
-                    navController.navigate("moveDetail")
+                onMoveAvailable = {
+                    navController.navigate("moveDetail/$it")
                 }
             )
         }
         composable(
-            "moveDetail"
+            route = "moveDetail/{moveName}",
+            arguments = listOf(navArgument("moveName"){
+                type = NavType.StringType
+            })
         ) {
             MoveDetailRoute(
                 onBack = { navController.popBackStack() }

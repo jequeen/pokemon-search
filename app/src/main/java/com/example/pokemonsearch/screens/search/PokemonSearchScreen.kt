@@ -17,32 +17,29 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.ViewModelStoreOwner
 import com.example.pokemonsearch.R
 import com.example.pokemonsearch.data.model.Pokemon
-import com.example.pokemonsearch.screens.PokemonSearchViewModel
 import com.example.pokemonsearch.ui.theme.PokemonSearchTheme
-
 
 @Composable
 fun PokemonSearchRoute(
-    viewModel: PokemonSearchViewModel = hiltViewModel(LocalContext.current as ViewModelStoreOwner),
+    viewModel: PokemonSearchViewModel = hiltViewModel(),
     onPokemonSelected: (Pokemon) -> Unit
 ) {
-    val selectedPokemon = viewModel.selectedPokemon
-    val screenState = viewModel.searchScreenState
 
     PokemonSearchScreen(
-        pokemonSearchScreenState = screenState,
-        onPokemonSelected = onPokemonSelected,
+        pokemonSearchScreenState = viewModel.searchScreenState.value,
+        onPokemonSelected = {
+            onPokemonSelected(it)
+            viewModel.clearSelectedPokemon()
+        },
         onSearchClick = viewModel::searchPokemonByName,
-        selectedPokemon = selectedPokemon
+        selectedPokemon = viewModel.selectedPokemon.value
     )
 }
 
